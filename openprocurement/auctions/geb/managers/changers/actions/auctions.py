@@ -203,6 +203,7 @@ class ModuleAuctionBringsAction(BaseAction):
         """
         # invalidate bids after auction
         context = self.context
+        context.auctionPeriod['endDate'] = get_now()  # set auction end time
         auction_value = context.value.amount
         invalid_bids = [bid for bid in context.bids if bid.value.amount == auction_value]
         for bid in invalid_bids:

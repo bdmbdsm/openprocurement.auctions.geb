@@ -75,8 +75,6 @@ class ModuleAuctionChanger(BaseResourceChanger):
         """
             When results come, it is end of auctionPerion
         """
-        self.context.auctionPeriod['endDate'] = get_now()
-
         modified = apply_patch(self.request, save=False, src=self.context.serialize())
         return modified
 

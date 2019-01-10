@@ -546,6 +546,11 @@ def module_auction_update_auction_urls(test_case):
     request_data['bids'] = bids_info
     response = test_case.app.patch_json(auction_url, {'data': request_data})
     test_case.assertEqual(response.status, expected_http_status)
+    test_case.assertNotIn(
+        'endDate',
+        response.json['data']['auctionPeriod'].keys(),
+        'auctionPeriod endDate must not be generated on this request'
+    )
 
 
 def bid_get_participation_urls(test_case):
